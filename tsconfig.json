@@ -37,11 +37,14 @@
 
 {
   "compilerOptions": {
-    "target": "es6",
+    "lib": ["es5", "es6"],
+    "target": "ES6",
     "module": "CommonJS",
+    "rootDirs": ["src"],
+    "moduleResolution": "node",
     "outDir": "./dist",
-    "rootDir": "./",
-    "strict": true,
-    "noImplicitAny": false
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true
   }
 }
