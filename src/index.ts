@@ -1,5 +1,7 @@
-import * as http from 'http';
-import express = require('express');
+
+import * as express from 'express';
+import * as http from "http";
+
 import { graphqlHTTP } from "express-graphql";
 import { root, schema } from "./graphql";
 
