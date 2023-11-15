@@ -40,8 +40,9 @@
     "target": "es6",
     "module": "CommonJS",
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDirs": ["src"],
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "esModuleInterop": true
   }
 }
