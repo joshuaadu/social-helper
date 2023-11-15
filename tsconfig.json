@@ -20,17 +20,29 @@
 //   "exclude": ["node_modules", "**/*.test.ts", "sr"]
 // }
 
+// {
+//   "compilerOptions": {
+//     "rootDirs": ["src"],
+//     "outDir": "dist",
+//     "lib": ["es2020"],
+//     "target": "es2020",
+//     "module": "esnext",
+//     "moduleResolution": "node",
+//     "esModuleInterop": true,
+//     "allowImportingTsExtensions": true,
+//     "noEmit": true,
+//     "types": ["node"]
+//   }
+// }
+
 {
   "compilerOptions": {
+    "target": "es6",
+    "module": "CommonJS",
+    "outDir": "./dist",
     "rootDirs": ["src"],
-    "outDir": "dist",
-    "lib": ["es2020"],
-    "target": "es2020",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    // "allowImportingTsExtensions": true,
-    // "noEmit": true,
-    "types": ["node"]
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true
   }
 }
