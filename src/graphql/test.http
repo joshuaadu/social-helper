@@ -1,0 +1,32 @@
+### Fetch Users
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "query { users { id username email provider providerId createdAt updatedAt } }"
+}
+
+### Fetch Tweets
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "query { tweets { id content authorId createdAt updatedAt } }"
+}
+
+### Create New User
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { createUser(username: \"newUsername\", email: \"newEmail@example.com\", provider: \"providerName\", providerId: \"providerId123\") { id username email provider providerId createdAt updatedAt } }"
+}
+
+
+### Create New Tweet
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { createTweet(content: \"Hello World!\", authorId: \"authorId\") { id content authorId createdAt updatedAt } }"
+}
