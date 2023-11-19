@@ -1,15 +1,29 @@
 // schema.ts
-import { buildSchema } from 'graphql';
+import { buildSchema } from "graphql";
 
 const schema = buildSchema(`
-  type User {
+interface User {
+  username: String!
+  email: String!
+}
+
+type DatabaseUser implements User {
     _id: String!
     username: String!
     email: String!
+    password: String!
     provider: String!
     providerId: String!
     createdAt: String!
     updatedAt: String!
+  }
+
+  input UserInput {
+    username: String!
+    email: String!
+    password: String!
+    provider: String!
+    providerId: String!
   }
 
   type Tweet {
@@ -23,16 +37,15 @@ const schema = buildSchema(`
   type Query {
     hello: String
     rollDice(numDice: Int!, numSides: Int): [Int]
-    getUsers: [User]
-    users: [User]
-    user(id: ID!): User
+    users: [DatabaseUser]
+    user(id: ID!): DatabaseUser
     tweets: [Tweet]
     tweet(id: ID!): Tweet
   }
 
   type Mutation {
-    createUser(username: String!, email: String!, provider: String!, providerId: String!): User
-    updateUser(id: ID!, username: String, email: String): User
+    createUser(input: UserInput): DatabaseUser
+    updateUser(id: ID!, input: UserInput): DatabaseUser
     createTweet(content: String!, authorId: ID!): Tweet
     updateTweet(id: ID!, content: String): Tweet
   }

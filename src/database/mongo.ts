@@ -1,4 +1,6 @@
-import { MongoClient } from 'mongodb';
+import { config } from "dotenv";
+config(); // This should be the
+import { MongoClient } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
 if (!uri) {
@@ -9,13 +11,13 @@ if (!uri) {
 const client = new MongoClient(uri);
 
 export async function connectToDatabase() {
-    try {
-        await client.connect();
-        console.log("Connected to MongoDB");
-    } catch (error) {
-        console.error("Could not connect to MongoDB", error);
-        process.exit(1);
-    }
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Could not connect to MongoDB", error);
+    process.exit(1);
+  }
 }
 
 export const db = client.db("social-app");
