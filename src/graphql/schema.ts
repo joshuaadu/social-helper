@@ -3,7 +3,7 @@ import { buildSchema } from 'graphql';
 
 const schema = buildSchema(`
   type User {
-    id: ID!
+    _id: String!
     username: String!
     email: String!
     provider: String!
@@ -22,6 +22,8 @@ const schema = buildSchema(`
 
   type Query {
     hello: String
+    rollDice(numDice: Int!, numSides: Int): [Int]
+    getUsers: [User]
     users: [User]
     user(id: ID!): User
     tweets: [Tweet]
