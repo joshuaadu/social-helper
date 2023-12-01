@@ -15,6 +15,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 passport.use(
+  "google",
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
@@ -59,9 +60,14 @@ const isLoggedIn = (req, res, next) => {
   }
 };
 
-router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.redirect("/home");
-});
+router.get(
+  "/google/redirect",
+  passport.authenticate("google", {
+    successRedirect: "/home",
+    failureRedirect: "/auth/google",
+  })
+);
+
 router.get(
   "/google",
   isLoggedIn,
@@ -71,10 +77,11 @@ router.get(
   }
 );
 
-router.get("/logout", (req, res) => {
+router.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) {
       console.error("Error logging out:", err);
+      next(err);
     }
     res.redirect("/");
   });
