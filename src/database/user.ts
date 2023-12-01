@@ -1,7 +1,8 @@
-import { db } from './mongo';
+import { db } from "./mongo";
 
 interface User {
   _id?: string;
+  id?: string;
   username: string;
   email: string;
   provider: string;
@@ -10,6 +11,6 @@ interface User {
   updatedAt: Date;
 }
 
-const usersCollection = db.collection<User>('users');
+const usersCollection = db.collection<User>("users");
 
 export { usersCollection, User };
