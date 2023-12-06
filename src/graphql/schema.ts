@@ -27,9 +27,26 @@ type DatabaseUser implements User {
   }
 
   type Tweet {
-    id: ID!
-    content: String!
+    _id: ID!
     authorId: ID!
+    content: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type FacebookPost {
+    _id: ID!
+    authorId: String!
+    content: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type InstagramPost {
+    _id: ID!
+    authorId: String!
+    imageUrl: String!
+    caption: String!
     createdAt: String!
     updatedAt: String!
   }
@@ -41,13 +58,18 @@ type DatabaseUser implements User {
     user(id: ID!): DatabaseUser
     tweets: [Tweet]
     tweet(id: ID!): Tweet
+    facebookPosts: [FacebookPost]
+    facebookPost(id: ID!): FacebookPost
+    instagramPosts: [InstagramPost]
+    instagramPost(id: ID!): InstagramPost
   }
 
   type Mutation {
     createUser(input: UserInput): DatabaseUser
     updateUser(id: ID!, input: UserInput): DatabaseUser
     createTweet(content: String!, authorId: ID!): Tweet
-    updateTweet(id: ID!, content: String): Tweet
+    createFacebookPost(content: String!, authorId: ID!): FacebookPost
+    createInstagramPost(imageUrl: String!, caption: String, authorId: ID!): InstagramPost
   }
 `);
 
