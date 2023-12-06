@@ -87,23 +87,23 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
-router.get("twitter/redirect", (req, res) => {
+router.get("/twitter/redirect", (req, res) => {
   res.send("twitter redirect");
 });
-router.get("twitter", isLoggedIn, (req, res) => {
+router.get("/twitter", isLoggedIn, (req, res) => {
   res.send("twitter auth");
 });
 
-router.get("facebook", isLoggedIn, (req, res) => {
+router.get("/facebook", isLoggedIn, (req, res) => {
   res.send("facebook auth");
 });
 
-router.get("facebook/redirect", (req, res) => {
+router.get("/facebook/redirect", (req, res) => {
   res.send("facebook redirect");
 });
 
 export const authCheck = (req, res, next) => {
-  //   console.log("authCheck", req.user, req.isAuthenticated());
+  console.log("authCheck", req.user, req.isAuthenticated());
   if (!req.user) {
     res.redirect("/auth/google");
   } else {
