@@ -1,10 +1,9 @@
 import { db } from './mongo';
-import { ObjectId } from 'mongodb';
 
 interface Tweet {
-  _id?: ObjectId;
+  _id?: string;
+  authorId: string;
   content: string;
-  authorId: ObjectId; // Reference to User's ObjectId
   createdAt: Date;
   updatedAt: Date;
 }

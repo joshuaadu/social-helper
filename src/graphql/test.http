@@ -19,7 +19,23 @@ POST http://localhost:3000/graphql
 Content-Type: application/json
 
 {
-  "query": "query { tweets { id content authorId createdAt updatedAt } }"
+  "query": "query { tweets { _id content authorId createdAt updatedAt } }"
+}
+
+### Fetch Facebook Posts
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "query { facebookPosts { _id authorId content createdAt updatedAt } }"
+}
+
+### Fetch Instagram Posts
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "query { instagramPosts { _id authorId imageUrl caption createdAt updatedAt } }"
 }
 
 ### Create New User
@@ -27,19 +43,29 @@ POST http://localhost:3000/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { createUser(username: \"newUsername\", email: \"newEmail@example.com\", provider: \"providerName\", providerId: \"providerId123\") { id username email provider providerId createdAt updatedAt } }"
+  "query": "mutation { createUser(input: { username: \"newUsername\", email: \"newEmail@example.com\", provider: \"providerName\", providerId: \"providerId123\" }) { _id username email provider providerId createdAt updatedAt } }"
 }
-
 
 ### Create New Tweet
 POST http://localhost:3000/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { createTweet(content: \"Hello World!\", authorId: \"authorId\") { id content authorId createdAt updatedAt } }"
+  "query": "mutation { createTweet(content: \"Hello World!\", authorId: \"655986faa99ed038277103a1\") { _id content authorId createdAt updatedAt } }"
 }
 
+### Create New Facebook Post
 POST http://localhost:3000/graphql
+Content-Type: application/json
+
 {
-  "query": "mutation { createTweet(content: \"Hello World!\", authorId: \"authorId\") { id content authorId createdAt updatedAt } }"
+  "query": "mutation { createFacebookPost(content: \"This is a Facebook post!\", authorId: \"656ac160cf842be61da41007\") { _id authorId content createdAt updatedAt } }"
+}
+
+### Create New Instagram Post
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { createInstagramPost(imageUrl: \"http://example.com/image.jpg\", caption: \"This is an Instagram post!\", authorId: \"655986faa99ed038277103a1\") { _id authorId imageUrl caption createdAt updatedAt } }"
 }
