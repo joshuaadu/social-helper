@@ -63,7 +63,7 @@ const resolvers = {
         _id: new ObjectId(id) as any,
       });
       if (!user) {
-        console.log("User not found");
+        // console.log("User not found");
         throw createError(404, "User not found");
       }
       return user;
@@ -84,7 +84,7 @@ const resolvers = {
       };
       const result = await usersCollection.insertOne(newUser);
       if (!result.insertedId) {
-        console.log("Failed to insert user");
+        // console.log("Failed to insert user");
         throw createError(400, "Failed to insert user");
       }
 
@@ -92,7 +92,7 @@ const resolvers = {
         _id: result.insertedId,
       });
       if (!createdUser) {
-        console.log("Inserted user not found");
+        // console.log("Inserted user not found");
         throw createError(404, "Inserted user not found");
       }
       return createdUser;
@@ -107,7 +107,7 @@ const resolvers = {
     try {
       const posts = await facebookPostsCollection.find({}).toArray();
       if (!posts) {
-        console.log("No Facebook posts found");
+        // console.log("No Facebook posts found");
         throw createError(404, "No Facebook posts found");
       }
       return posts;
@@ -123,7 +123,7 @@ const resolvers = {
         _id: new ObjectId(id) as any,
       });
       if (!post) {
-        console.log("Facebook post not found");
+        // console.log("Facebook post not found");
         throw createError(404, "Facebook post not found");
       }
       return post;
@@ -142,7 +142,7 @@ const resolvers = {
       });
 
       if (!user) {
-        console.log("Author not found");
+        // console.log("Author not found");
         throw createError(404, "Author not found");
       }
 
@@ -155,7 +155,7 @@ const resolvers = {
 
       const result = await facebookPostsCollection.insertOne(newPost);
       if (!result.insertedId) {
-        console.log("Failed to insert Facebook post");
+        // console.log("Failed to insert Facebook post");
         throw createError(404, "Failed to insert Facebook post");
       }
 
@@ -173,7 +173,7 @@ const resolvers = {
     try {
       const posts = await instagramPostsCollection.find({}).toArray();
       if (!posts) {
-        console.log("No Instagram posts found");
+        // console.log("No Instagram posts found");
         throw createError("No Instagram posts found");
       }
       return posts;
@@ -189,7 +189,7 @@ const resolvers = {
         _id: new ObjectId(id) as any,
       });
       if (!post) {
-        console.log("Instagram post not found");
+        // console.log("Instagram post not found");
         throw createError(404, "Instagram post not found");
       }
       return post;
@@ -212,7 +212,7 @@ const resolvers = {
       });
 
       if (!user) {
-        console.log("Author not found");
+        // console.log("Author not found");
         throw createError(404, "Author not found");
       }
 
@@ -226,7 +226,7 @@ const resolvers = {
 
       const result = await instagramPostsCollection.insertOne(newPost);
       if (!result.insertedId) {
-        console.log("Failed to insert Instagram post");
+        // console.log("Failed to insert Instagram post");
         throw createError(400, "Failed to insert Instagram post");
       }
 
@@ -244,7 +244,7 @@ const resolvers = {
     try {
       const tweets = await tweetsCollection.find({}).toArray();
       if (!tweets) {
-        console.log("No tweets found");
+        // console.log("No tweets found");
         throw createError(404, "No tweets found");
       }
       return tweets;
@@ -260,7 +260,7 @@ const resolvers = {
         _id: new ObjectId(id) as any,
       });
       if (!tweet) {
-        console.log("Tweet not found");
+        // console.log("Tweet not found");
         throw createError(404, "Tweet not found");
       }
       return tweet;
@@ -279,7 +279,7 @@ const resolvers = {
       });
 
       if (!user) {
-        console.log("Author not found");
+        // console.log("Author not found");
         throw createError(404, "Author not found");
       }
 
@@ -292,7 +292,7 @@ const resolvers = {
 
       const result = await tweetsCollection.insertOne(newTweet);
       if (!result.insertedId) {
-        console.log("Failed to insert tweet");
+        // console.log("Failed to insert tweet");
         throw createError(400, "Failed to insert tweet");
       }
 
