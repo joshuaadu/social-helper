@@ -47,10 +47,12 @@ const resolvers = {
     try {
       const users = await usersCollection.find({}).toArray();
       if (!users) {
+        console.log("No users found");
         throw createError(404, "No users found");
       }
       return users;
     } catch (error) {
+      console.log("Error getting users", error);
       throw error;
     }
   },
@@ -61,10 +63,12 @@ const resolvers = {
         _id: new ObjectId(id) as any,
       });
       if (!user) {
+        console.log("User not found");
         throw createError(404, "User not found");
       }
       return user;
     } catch (error) {
+      console.log("Error getting user", error);
       throw error;
     }
   },
@@ -80,6 +84,7 @@ const resolvers = {
       };
       const result = await usersCollection.insertOne(newUser);
       if (!result.insertedId) {
+        console.log("Failed to insert user");
         throw createError(400, "Failed to insert user");
       }
 
@@ -87,10 +92,12 @@ const resolvers = {
         _id: result.insertedId,
       });
       if (!createdUser) {
+        console.log("Inserted user not found");
         throw createError(404, "Inserted user not found");
       }
       return createdUser;
     } catch (error) {
+      console.log("Error creating user", error);
       throw error;
     }
   },
@@ -100,10 +107,12 @@ const resolvers = {
     try {
       const posts = await facebookPostsCollection.find({}).toArray();
       if (!posts) {
+        console.log("No Facebook posts found");
         throw createError(404, "No Facebook posts found");
       }
       return posts;
     } catch (error) {
+      console.log("Error getting Facebook posts", error);
       throw error;
     }
   },
@@ -114,10 +123,12 @@ const resolvers = {
         _id: new ObjectId(id) as any,
       });
       if (!post) {
+        console.log("Facebook post not found");
         throw createError(404, "Facebook post not found");
       }
       return post;
     } catch (error) {
+      console.log("Error getting Facebook post", error);
       throw error;
     }
   },
@@ -131,6 +142,7 @@ const resolvers = {
       });
 
       if (!user) {
+        console.log("Author not found");
         throw createError(404, "Author not found");
       }
 
@@ -143,6 +155,7 @@ const resolvers = {
 
       const result = await facebookPostsCollection.insertOne(newPost);
       if (!result.insertedId) {
+        console.log("Failed to insert Facebook post");
         throw createError(404, "Failed to insert Facebook post");
       }
 
@@ -150,6 +163,7 @@ const resolvers = {
         _id: result.insertedId,
       });
     } catch (error) {
+      console.log("Error creating Facebook post", error);
       throw error;
     }
   },
@@ -159,10 +173,12 @@ const resolvers = {
     try {
       const posts = await instagramPostsCollection.find({}).toArray();
       if (!posts) {
+        console.log("No Instagram posts found");
         throw createError("No Instagram posts found");
       }
       return posts;
     } catch (error) {
+      console.log("Error getting Instagram posts", error);
       throw error;
     }
   },
@@ -173,10 +189,12 @@ const resolvers = {
         _id: new ObjectId(id) as any,
       });
       if (!post) {
+        console.log("Instagram post not found");
         throw createError(404, "Instagram post not found");
       }
       return post;
     } catch (error) {
+      console.log("Error getting Instagram post", error);
       throw error;
     }
   },
@@ -194,6 +212,7 @@ const resolvers = {
       });
 
       if (!user) {
+        console.log("Author not found");
         throw createError(404, "Author not found");
       }
 
@@ -207,6 +226,7 @@ const resolvers = {
 
       const result = await instagramPostsCollection.insertOne(newPost);
       if (!result.insertedId) {
+        console.log("Failed to insert Instagram post");
         throw createError(400, "Failed to insert Instagram post");
       }
 
@@ -214,6 +234,7 @@ const resolvers = {
         _id: result.insertedId,
       });
     } catch (error) {
+      console.log("Error creating Instagram post", error);
       throw error;
     }
   },
@@ -223,10 +244,12 @@ const resolvers = {
     try {
       const tweets = await tweetsCollection.find({}).toArray();
       if (!tweets) {
+        console.log("No tweets found");
         throw createError(404, "No tweets found");
       }
       return tweets;
     } catch (error) {
+      console.log("Error getting tweets", error);
       throw error;
     }
   },
@@ -237,10 +260,12 @@ const resolvers = {
         _id: new ObjectId(id) as any,
       });
       if (!tweet) {
+        console.log("Tweet not found");
         throw createError(404, "Tweet not found");
       }
       return tweet;
     } catch (error) {
+      console.log("Error getting tweet", error);
       throw error;
     }
   },
@@ -254,6 +279,7 @@ const resolvers = {
       });
 
       if (!user) {
+        console.log("Author not found");
         throw createError(404, "Author not found");
       }
 
@@ -266,6 +292,7 @@ const resolvers = {
 
       const result = await tweetsCollection.insertOne(newTweet);
       if (!result.insertedId) {
+        console.log("Failed to insert tweet");
         throw createError(400, "Failed to insert tweet");
       }
 
@@ -273,6 +300,7 @@ const resolvers = {
         _id: result.insertedId,
       });
     } catch (error) {
+      console.log("Error creating tweet", error);
       throw error;
     }
   },
