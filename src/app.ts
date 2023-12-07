@@ -6,9 +6,13 @@ import * as session from "express-session";
 import router from "./routes";
 import schema from "./graphql/schema";
 import resolvers from "./graphql/resolvers";
+import errorHandler from "./middleware/errors";
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(errorHandler);
 app.use(
   session({
     secret: process.env.SESSION_SECRET, // replace with your own secret key
