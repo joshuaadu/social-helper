@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { ObjectId, Filter } from "mongodb";
 import * as createError from "http-errors";
 import { usersCollection, User } from "../database/user";
 import { tweetsCollection, Tweet } from "../database/tweet";
@@ -167,6 +167,69 @@ const resolvers = {
       throw error;
     }
   },
+
+  updateFacebookPost: async ({ id, input }) => {
+    try {
+      console.log("Received update request for Facebook Post");
+      console.log("ID:", id);
+      console.log("Input data:", input);
+  
+      const updateData = { ...input, updatedAt: new Date() };
+      console.log("Prepared update data:", updateData);
+  
+      const objectId = new ObjectId(id);
+      console.log("Converted ObjectId:", objectId);
+  
+      const updatedPost = await facebookPostsCollection.findOneAndUpdate(
+        { _id: objectId as any },
+        { $set: updateData },
+        { returnDocument: 'after' }
+      );
+  
+      console.log("findOneAndUpdate result:", updatedPost);
+  
+      // Directly check if the updatedPost exists
+      if (!updatedPost) {
+        console.error("Facebook post not found or update failed");
+        throw createError(404, "Facebook post not found or update failed");
+      }
+  
+      console.log("Updated document:", updatedPost);
+      return updatedPost;
+    } catch (error) {
+      console.error("Error updating Facebook post", error);
+      throw error;
+    }
+  },
+  
+  
+  
+  
+  deleteFacebookPost: async ({ id }) => {
+    try {
+      console.log("Received delete request for Facebook Post");
+      console.log("ID:", id);
+  
+      const deletedPost = await facebookPostsCollection.findOneAndDelete({
+        _id: new ObjectId(id) as any
+      });
+  
+      console.log("findOneAndDelete result:", deletedPost);
+  
+      // Directly check if the deletedPost exists
+      if (!deletedPost) {
+        console.error("Facebook post not found or delete failed");
+        throw createError(404, "Facebook post not found or delete failed");
+      }
+  
+      console.log("Deleted document:", deletedPost);
+      return deletedPost;
+    } catch (error) {
+      console.error("Error deleting Facebook post", error);
+      throw error;
+    }
+  },
+  
 
   // Instagram Post Resolvers
   instagramPosts: async () => {

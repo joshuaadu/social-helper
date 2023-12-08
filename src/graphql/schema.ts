@@ -69,7 +69,13 @@ type DatabaseUser implements User {
     updateUser(id: ID!, input: UserInput): DatabaseUser
     createTweet(content: String!, authorId: ID!): Tweet
     createFacebookPost(content: String!, authorId: ID!): FacebookPost
+    updateFacebookPost(id: ID!, input: UpdateFacebookPostInput): FacebookPost
+    deleteFacebookPost(id: ID!): FacebookPost
     createInstagramPost(imageUrl: String!, caption: String, authorId: ID!): InstagramPost
+  }
+
+  input UpdateFacebookPostInput {
+    content: String
   }
 `);
 

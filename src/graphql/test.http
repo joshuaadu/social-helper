@@ -43,7 +43,7 @@ POST http://localhost:3000/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation { createUser(input: { username: \"newUsername\", email: \"newEmail@example.com\", provider: \"providerName\", providerId: \"providerId123\" }) { _id username email provider providerId createdAt updatedAt } }"
+  "query": "mutation { createUser(input: { username: \"newUsername\", email: \"newEmail@example.com\", provider: \"providerName\", providerId: \"providerId123\" password: \"123456\"}) { _id username email provider providerId password createdAt updatedAt } }"
 }
 
 ### Create New Tweet
@@ -68,4 +68,28 @@ Content-Type: application/json
 
 {
   "query": "mutation { createInstagramPost(imageUrl: \"http://example.com/image.jpg\", caption: \"This is an Instagram post!\", authorId: \"655986faa99ed038277103a1\") { _id authorId imageUrl caption createdAt updatedAt } }"
+}
+
+### Create New Facebook Post
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { createFacebookPost(content: \"This is a Facebook post!\", authorId: \"656ac160cf842be61da41007\") { _id authorId content createdAt updatedAt } }"
+}
+
+### Update Facebook Post
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { updateFacebookPost(id: \"656fedf2e9b475a08d5c76ad\", input: { content: \"This is an updated 2 Facebook post!\" }) { _id authorId content createdAt updatedAt } }"
+}
+
+### Delete Facebook Post
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { deleteFacebookPost(id: \"657357cc315e63e47ef3edb2\") { _id authorId content createdAt updatedAt } }"
 }
